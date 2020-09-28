@@ -1,120 +1,154 @@
-<div class="class-container">
-
-
-
-
-
-
-
-
-<div class="center-btn">
-    Center text
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- BEM Block -->
-
-    <!-- <button class="btn">Button</button>
-    <button class="btn button--state-success">Button</button>
-    <button class="btn button--state-danger">Button</button> -->
-
-    <!-- BEM Block -->
-
-
-    <!-- Position Block -->
-
-    <!-- <div class="item item-one"></div>
-    <div class="item item-two"></div>
-    <div class="item item-three"></div> -->
-
-    <!-- Position Block -->
-
-
-    <!-- Adjacent sibling combinator Block -->
-
-    <!-- <div class="sibling-combinator">
-        <p>Lorem ipsum dolor sit amet 1.</p>
-        <div>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim alias, minima magnam recusandae blanditiis saepe fugiat accusantium esse sapiente nostrum.
-        </div>
-    </div> -->
-
-    <!-- Adjacent sibling combinator Block -->
-
-
-    <!-- Child combinator Block -->
-
-    <!-- <div class="child-combinator">
-        <span>Span #1, in the div.
-            <span>Span #2, in the span that's in the div.</span>
-        </span>
+<div fxLayout="column" fxLayoutGap="24px">
+
+    <div fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-around center" fxLayout="column"
+        fxLayoutAlign="space-around center" fxLayoutGap="20px" class="card">
+        <mat-card fxFlex.gt-sm="25" fxFlex="100" *ngFor="let item of headItems">
+            <div fxLayout="row" fxLayoutGap="20px">
+                <div class="circle" [ngClass]="'circle-' + item.iconColor" fxLayoutAlign="center center">
+                    <mat-icon>{{item.icon}}</mat-icon>
+                </div>
+                <div fxLayout="column" class="user-card">
+                    <h5>{{item.textTitle}}</h5>
+                    <p>{{item.textPara}}</p>
+                </div>
+            </div>
+        </mat-card>
     </div>
-    <span>Span #3, not in the div at all.</span> -->
 
-    <!-- Child combinator Block -->
+    <div fxLayout="row" fxLayoutGap="16px">
+        <mat-card fxFlex="30" fxLayout="column" fxLayoutGap="32px">
+            <div>
+                <h2>Today's Schedule</h2>
+                <h4 class="description">CheckOut your daily schedule</h4>
+            </div>
+            <ul class="list-style" fxLayout="column" fxLayoutGap="24px">
+                <li class="list-items" fxLayout="row" fxLayoutGap="32px" fxFlex="100" *ngFor="let litem of leftItems">
+                    <div class="circle" [ngClass]="'circle-' + litem.iconColor" fxLayoutAlign="center center">
+                        <mat-icon>{{litem.icon}}</mat-icon>
+                    </div>
+                    <div fxLayout="column" class="user-card">
+                        <h5>{{litem.textTitle}} <span class="time-ago">{{litem.time}}</span></h5>
+                        <p>{{litem.textPara}}</p>
+                        <mat-card-actions class="list-button">
+                            <button class="btn button-success">Approve</button>
+                            <button class="btn button-danger">Refuse</button>
+                        </mat-card-actions>
+                    </div>
+                </li>
+            </ul>
+        </mat-card>
+        <div fxFlex="70" fxLayout="column" fxLayoutGap="32px">
+            <mat-card fxLayout="row" fxLayoutAlign="space-between center">
+                <div>
+                    <h2>Sales Overview</h2>
+                    <h4 class="description">Check the monthly sales</h4>
+                </div>
+                <div fxLayout="row" class="description">
+                    <h4>January</h4>
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                </div>
+            </mat-card>
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="month">
+                <div>
+                    <h1>March 2017</h1>
+                    <h2 class="description">Report for this month</h2>
+                </div>
+                <div>
+                    <span class="total-price">$3,690</span>
+                </div>
+            </div>
+            <mat-card>
+                <table class="status-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let titem of tableItems; index as i">
+                            <td>{{i+1}}</td>
+                            <td>{{titem.name}}</td>
+                            <td><span class="status-badge"
+                                    [ngClass]="{'back-color-sale': titem.status == 'sale', 'back-color-extended': titem.status == 'extended', 'back-color-member': titem.status == 'member', 'back-color-tax': titem.status == 'tax' }">{{titem.status}}</span>
+                            </td>
+                            <td>{{titem.date}}</td>
+                            <td class="price"
+                                [ngClass]="{'price-red': titem.price < 0, 'price-blue': titem.price > 1000 }">
+                                ${{titem.price}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-card>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="16px">
+        <mat-card fxFlex="65" fxLayout="column" fxLayoutGap="32px">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div>
+                    <h2>Projects of the month</h2>
+                </div>
+                <div fxLayout="row" class="description">
+                    <h4>January</h4>
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                </div>
+            </div>
+            <table class="status-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Assigned</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Priority</th>
+                        <th scope="col">Budget</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let bitem of budgetItems;">
+                        <td>
+                            <div fxLayout="row" fxLayoutGap="20px">
+                                <div class="circle" [ngClass]="'circle-' + bitem.iconColor"
+                                    fxLayoutAlign="center center">
+                                    <h5 class="initials">{{bitem.devName[0]}}</h5>
+                                </div>
+                                <div fxLayout="column" class="user-card">
+                                    <h5>{{bitem.devName}}</h5>
+                                    <p>{{bitem.designation}}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{bitem.name}}</td>
+                        <td><span class="status-badge"
+                                [ngClass]="{'back-color-extended': bitem.priority == 'low', 'back-color-sale': bitem.priority == 'medium', 'back-color-member': bitem.priority == 'high'}">{{bitem.priority}}</span>
+                        </td>
+                        <td>{{bitem.budget}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-card>
+        <mat-card fxFlex="35" fxLayout="column" fxLayoutGap="32px">
 
+            <div fxLayout.gt-sm="row" fxLayout="column" fxLayoutGap="16px">
+                <div class="blog-post">
+                    <div class="blog-post-img" [ngStyle]="{'background-image':'url('+blogImg+')'}"></div>
+                    <div class="blog-post-description p-16 status-table">
+                        <h3 class="mb-16 line-height-24 primary-text title" ngClass.gt-sm="font-size-20"
+                            ngClass.sm="font-size-16" ngClass.xs="font-size-16">Business development of rules</h3>
+                        <span class="tag blog-tag font-size-12 status-badge">Technology</span>
+                        <p class="mt-32 secondary-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+                            sit
+                            deserunt assumenda rerum sed architecto consectetur ab, totam quas earum.</p>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="mt-32">
+                            <a href="">Read more</a>
+                            <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                                <mat-icon color="primary">share</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </div>
 </div>
